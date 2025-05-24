@@ -8,10 +8,11 @@
             <img v-else class="w-fit h-10" :src="Assets.app_logo" />
           </div>
           <ul class="flex gap-6 text-md font-semibold">
-            <li><a href="#home" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Home</a></li>
-            <li><a href="#services" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Services</a></li>
-            <li><a href="#pricing" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Pricing</a></li>
-            <li><a href="#contact" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Contact Us</a></li>
+            <!-- <li><a href="#home" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Home</a></li> -->
+            <li><div @click="scrollTo('home')" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Home</div></li>
+            <li><div @click="scrollTo('services')" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Services</div></li>
+            <li><div @click="scrollTo('pricing')" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Pricing</div></li>
+            <li><div @click="scrollTo('contact')" :class="[isTop ? 'hover:text-blue-200' : 'hover:text-blue-600']">Contact Us</div></li>
           </ul>
         </nav>
       </header>
@@ -24,14 +25,14 @@
             <div class="flex-col justify-center items-center">
               <img class="max-w-xl" :src="Assets.app_logo_white" />
               <!-- <h1 class="text-[160px] font-bold tracking-[1rem] bg-linear-to-b from-white via-50% to-white bg-clip-text text-transparent">Tekkie</h1> -->
-              <p class="text-[24px] max-w-xl flex text-white items-center px-16 mt-8">
+              <div class="text-[24px] max-w-xl flex text-white items-center px-16 mt-8">
                 <img :src="Assets.ic_right" class="w-[48px] h-[48px]" style="color" />
                 <div>Grow Your Business With Technology</div>
-              </p>
-              <div class="flex items-center justify-between">
+              </div>
+              <div class="flex items-center justify-between mt-16">
                 <a class="ml-10 bg-blue-400 rounded-full py-2 px-6 text-white cursor-pointer" @click="scrollToServices">Explore now</a>
                 <div class="bg-white rounded-full w-10 py-2 text-black ml-3 mr-auto items-center"><-</div>
-                <div class="bg-blue-400 rounded-3xl py-4 px-6 text-white text-2xl">Smart<br>Innovation</div>
+                <!-- <div class="bg-blue-400 rounded-3xl py-4 px-6 text-white text-2xl">Smart<br>Innovation</div> -->
               </div>
             </div>
             <div>
@@ -59,7 +60,7 @@
   
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import {Assets} from "../assets/assets.ts"
+import {Assets} from "../assets/assets"
 import ScrollRevealText from "../components/ScrollRevealText.vue"
 import ContactUs from "./ContactUs.vue"
 import Services from "./Services.vue"
@@ -79,6 +80,13 @@ const scrollToServices = () => {
     target.scrollIntoView({ behavior: 'smooth' });
   }
 };
+
+const scrollTo = (id: string) => {
+  const target = document.getElementById(id);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 
 onMounted(() => {
   onScroll()

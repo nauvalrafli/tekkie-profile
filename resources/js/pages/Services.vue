@@ -28,30 +28,32 @@ function toggleDetails(index) {
 </script>
 
 <template>
-    <h2 class="text-4xl font-bold mb-6 text-center text-white tracking-wide">Our Services</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700 px-20">
-      <div
-        v-for="(service, index) in services"
-        :key="index"
-        class="cursor-pointer"
-        @click="toggleDetails(index)"
-      >
+    <div class="w-full flex flex-col justify-center h-[60vh]">
+      <h2 class="text-4xl font-bold mb-6 text-center text-white tracking-wide">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700 px-20">
         <div
-          class="p-6 rounded-lg shadow-xl font-bold transition-all duration-300 ease-in-out hover:scale-105;"
-          :class="{
-            'bg-blue-500 scale-105 text-white shadow-xl': activeIndex === index,
-            'bg-gray-100': activeIndex !== index
-          }"
+          v-for="(service, index) in services"
+          :key="index"
+          class="cursor-pointer"
+          @click="toggleDetails(index)"
         >
-          {{ service.title }}
-          <transition name="fade">
           <div
-            v-if="activeIndex === index"
-            class="mt-4 p-4 rounded"
+            class="p-6 rounded-lg shadow-xl font-bold transition-all duration-300 ease-in-out hover:scale-105;"
+            :class="{
+              'bg-blue-500 scale-105 text-white shadow-xl': activeIndex === index,
+              'bg-gray-100': activeIndex !== index
+            }"
           >
-            {{ service.details }}
+            {{ service.title }}
+            <transition name="fade">
+            <div
+              v-if="activeIndex === index"
+              class="mt-4 p-4 rounded"
+            >
+              {{ service.details }}
+            </div>
+          </transition>
           </div>
-        </transition>
         </div>
       </div>
     </div>

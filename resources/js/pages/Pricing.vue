@@ -4,25 +4,30 @@ import { ref } from 'vue';
 const pricingPackages = [
   {
     title: 'Web Development',
-    details: 'Professional website development tailored to your business needs. Starting from Rp 5.000.000.',
-    id: 'Profesional pengembangan website sesuai kebutuhan bisnis. Mulai dari Rp 5.000.000.',
+    details: 'Professional website development tailored to your business needs',
+    price: 'Start from Rp5.000.000',
+    id: 'Pengembangan website profesional sesuai kebutuhan bisnis Anda.'
   },
   {
     title: 'Mobile App Development',
-    details: 'Custom Android and iOS applications. Starting from Rp 12.000.000.',
-    id: 'Pengembangan aplikasi Android dan iOS kustom. Mulai dari Rp 12.000.000.',
+    details: 'Custom Android and iOS applications.',
+    price: 'Start from Rp12.000.000',
+    id: 'Pengembangan aplikasi Android dan iOS kustom.'
   },
   {
     title: 'System Maintenance',
-    details: 'Ongoing support and maintenance for existing systems. Starting from Rp 1.000.000/month.',
-    id: 'Dukungan dan pemeliharaan sistem yang sudah ada. Mulai dari Rp 1.000.000/bulan.',
+    details: 'Ongoing support and maintenance for existing systems.',
+    price: 'Start from Rp500.000',
+    id: 'Dukungan dan pemeliharaan berkelanjutan untuk sistem yang sudah ada.'
   },
   {
-    title: 'Enterprise Solutions',
-    details: 'End-to-end solutions for large-scale systems. Contact us for custom pricing.',
-    id: 'Solusi menyeluruh untuk sistem berskala besar. Hubungi kami untuk harga khusus.',
+    title: 'Landing Page Website',
+    details: 'Outstanding landing page to make your business more outstanding.',
+    price: 'Start from Rp300.000',
+    id: 'Halaman landing yang menarik untuk membuat bisnis Anda lebih menonjol.'
   },
 ];
+
 
 
 const activeIndex = ref<number | null>(null);
@@ -49,9 +54,17 @@ function toggleDetails(index: number) {
         }"
       >
         <div :class="[
-          activeIndex != index ? 'text-blue-700' : 'text-white'
+          'font-bold',
+          activeIndex != index ? '' : 'text-white bg-none'
         ]">
           {{ plan.title }}
+        </div>
+        <div :class="[
+          activeIndex != index 
+              ? 'bg-gradient-to-b from-blue-700 via-blue-400 to-blue-600 bg-clip-text text-transparent' 
+              : 'bg-gradient-to-b from-blue-200 via-white to-blue-200 bg-clip-text text-transparent'
+        ]" class="text-xl">
+          {{ plan.price }}
         </div>
         
         <div

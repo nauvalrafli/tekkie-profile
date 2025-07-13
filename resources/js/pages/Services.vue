@@ -5,24 +5,29 @@ const services = [
   {
     title: 'Custom Web Development',
     details: 'We build responsive websites tailored to your business needs.',
+    id: 'Kami membangun situs web responsif yang disesuaikan dengan kebutuhan bisnis Anda.'
   },
   {
     title: 'Mobile App Development',
     details: 'Cross-platform mobile apps built with performance and usability in mind.',
+    id: 'Aplikasi mobile lintas platform yang dibangun dengan performa dan kemudahan penggunaan sebagai prioritas.'
   },
   {
     title: 'UI/UX Design',
     details: 'User-centered designs to create engaging digital experiences.',
+    id: 'Desain berpusat pada pengguna untuk menciptakan pengalaman digital yang menarik.'
   },
   {
-    title: 'Cloud-Based Solutions',
-    details: 'Scalable and secure cloud services for your growing business.',
+    title: 'IT Consultation',
+    details: 'Consult your technology implementation worry-free',
+    id: 'Konsultasikan penerapan teknologi Anda tanpa khawatir.'
   },
 ];
 
-const activeIndex = ref(null);
 
-function toggleDetails(index) {
+const activeIndex = ref<number | null>(null);
+
+function toggleDetails(index: number) {
   activeIndex.value = activeIndex.value === index ? null : index;
 }
 </script>
@@ -44,13 +49,25 @@ function toggleDetails(index) {
               'bg-gray-100': activeIndex !== index
             }"
           >
-            {{ service.title }}
+            <div class="text-xl" :class="[
+              activeIndex == index ? 'text-white' : 'text-blue-800'
+            ]">
+              {{ service.title }}
+            </div>
             <transition name="fade">
-            <div
+            <div>
+              <div
               v-if="activeIndex === index"
-              class="mt-4 p-4 rounded"
+              class="mt-4 rounded"
             >
               {{ service.details }}
+            </div>
+            <div
+              v-if="activeIndex === index"
+              class="rounded text-xs text-blue-200"
+            >
+              {{ service.id }}
+            </div>
             </div>
           </transition>
           </div>
